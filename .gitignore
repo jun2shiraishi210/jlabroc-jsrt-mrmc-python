@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+validation/logs/
+validation/validation_results*.csv
+validation/simulation/logs/
+validation/simulation/simulation_validation_details*.csv
+validation/simulation/simulation_validation_summary*.csv

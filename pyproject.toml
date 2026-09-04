@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jlabroc-jsrt-mrmc"
+version = "1.0.0"
+description = "Python implementation of JLABROC and JSRT-MRMC compatible ROC/MRMC analyses"
+readme = "README.md"
+authors = [{name = "Junji Shiraishi"}]
+license = {text = "BSD-3-Clause"}
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.24", "scipy>=1.10"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[project.scripts]
+jlabroc-jsrt-mrmc = "jlabroc_jsrt_mrmc.cli:main"
+
+[project.urls]
+Repository = "https://github.com/jun2shiraishi210/jlabroc-jsrt-mrmc-python"

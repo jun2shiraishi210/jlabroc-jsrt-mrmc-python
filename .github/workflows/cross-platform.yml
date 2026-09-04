@@ -1,0 +1,93 @@
+name: Cross-platform validation
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  tests:
+    name: Tests (${{ matrix.os }}, Python ${{ matrix.python }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python: ['3.10', '3.11', '3.12']
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+      - name: Install package and test dependency
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e .
+          python -m pip install pytest
+      - name: Run test suite
+        run: python -m pytest -q
+
+  legacy-validation:
+    name: Archived numerical validation (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install package
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e .
+      - name: Run archived-reference validation
+        shell: bash
+        run: |
+          python validation/run_validation.py \
+            --csv "validation/validation_results_${RUNNER_OS}.csv" \
+            --log "validation/validation_run_${RUNNER_OS}.txt"
+      - name: Upload archived validation record
+        uses: actions/upload-artifact@v6
+        with:
+          name: validation-${{ runner.os }}
+          path: |
+            validation/validation_run_*.txt
+            validation/validation_results_*.csv
+
+  simulation-validation:
+    name: Systematic simulation validation (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install package
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e .
+      - name: Run systematic simulation validation
+        shell: bash
+        run: |
+          python validation/simulation/run_simulation_validation.py \
+            --detail-csv "validation/simulation/simulation_validation_details_${RUNNER_OS}.csv" \
+            --summary-csv "validation/simulation/simulation_validation_summary_${RUNNER_OS}.csv" \
+            --log "validation/simulation/simulation_validation_run_${RUNNER_OS}.txt"
+      - name: Upload simulation validation record
+        uses: actions/upload-artifact@v6
+        with:
+          name: simulation-validation-${{ runner.os }}
+          path: |
+            validation/simulation/simulation_validation_run_*.txt
+            validation/simulation/simulation_validation_details_*.csv
+            validation/simulation/simulation_validation_summary_*.csv

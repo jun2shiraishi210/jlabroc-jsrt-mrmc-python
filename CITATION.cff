@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the software and the associated methodological paper."
+title: "JLABROC/JSRT-MRMC Python"
+type: software
+authors:
+  - family-names: "Shiraishi"
+    given-names: "Junji"
+version: "1.0.0"
+date-released: "2026-09-04"
+license: "BSD-3-Clause"
+repository-code: "https://github.com/jun2shiraishi210/jlabroc-jsrt-mrmc-python"
+abstract: >-
+  A Python implementation of JLABROC for binormal ROC fitting and
+  JSRT-MRMC for two-system multi-reader multi-case ROC analysis,
+  with archived-reference, systematic-simulation, and cross-platform
+  numerical validation.
