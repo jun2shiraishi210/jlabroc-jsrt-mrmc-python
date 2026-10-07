@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.1
+
+- Added direct parsing of the original two-system JSRT-MRMC reader-block text format.
+- Retained the numeric matrix input format introduced in earlier Python releases.
+- Added automatic MRMC input-format detection at the command line.
+- Added regression tests showing that legacy reader-block input and matrix input produce identical rating matrices and MRMC results.
+- Accepted canonical `* *` separators and, for robustness, historical single-`*` separator lines without changing the validated MRMC numerical algorithm.
+- Updated documentation and package metadata for the maintenance release.
+- No changes to the JLABROC fitting algorithm, JSRT-MRMC ANOVA algorithm, numerical references, or systematic simulation design.
+
 ## 1.0.0
 
 - First stable public release of JLABROC/JSRT-MRMC Python.

@@ -2,9 +2,14 @@
 
 from .jlabroc import JLabrocResult, fit_jlabroc
 from .mrmc import AnovaResult, MrmcResult, analyze_mrmc
-from .io import read_legacy_jlabroc_input, read_mrmc_matrix
+from .io import (
+    read_legacy_jlabroc_input,
+    read_legacy_mrmc_input,
+    read_mrmc_input,
+    read_mrmc_matrix,
+)
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 
 __all__ = [
     "JLabrocResult",
@@ -13,5 +18,7 @@ __all__ = [
     "MrmcResult",
     "analyze_mrmc",
     "read_legacy_jlabroc_input",
+    "read_legacy_mrmc_input",
+    "read_mrmc_input",
     "read_mrmc_matrix",
 ]

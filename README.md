@@ -36,11 +36,20 @@ Single-reader JLABROC-compatible analysis:
 jlabroc-jsrt-mrmc jlabroc tests/data/Test_R1A_In.txt
 ```
 
-Two-system JSRT-MRMC-compatible analysis:
+Two-system JSRT-MRMC-compatible analysis using the numeric matrix format:
 
 ```bash
 jlabroc-jsrt-mrmc mrmc tests/data/RateData_Level2_R5_ver050_50_50_00001.txt --readers 5 --negative 50 --positive 50
 ```
+
+The original JSRT-MRMC reader-block text format is also accepted directly:
+
+```bash
+jlabroc-jsrt-mrmc mrmc tests/data/Test_In_forMRMC_R5_P50_N50_legacy.txt --readers 5 --negative 50 --positive 50
+```
+
+Both input layouts are converted to the same internal rating matrix before the
+validated MRMC calculation is performed.
 
 The same commands can also be invoked with:
 

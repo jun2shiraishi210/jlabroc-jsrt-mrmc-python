@@ -40,3 +40,17 @@ def test_cli_mrmc():
     assert "Mean AUC System 2 : 0.8058" in out
     assert "Difference        : 0.0589" in out
     assert "p                 : 0.005440" in out
+
+
+def test_cli_mrmc_legacy_reader_block_format():
+    out = _run(
+        "mrmc",
+        str(DATA / "Test_In_forMRMC_R5_P50_N50_legacy.txt"),
+        "--readers", "5",
+        "--negative", "50",
+        "--positive", "50",
+    )
+    assert "Mean AUC System 1 : 0.8647" in out
+    assert "Mean AUC System 2 : 0.8058" in out
+    assert "Difference        : 0.0589" in out
+    assert "p                 : 0.005440" in out

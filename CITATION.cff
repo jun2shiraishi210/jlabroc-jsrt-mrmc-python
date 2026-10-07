@@ -5,8 +5,8 @@ type: software
 authors:
   - family-names: "Shiraishi"
     given-names: "Junji"
-version: "1.0.0"
-date-released: "2026-09-04"
+version: "1.0.1"
+date-released: "2026-10-07"
 license: "BSD-3-Clause"
 repository-code: "https://github.com/jun2shiraishi210/jlabroc-jsrt-mrmc-python"
 abstract: >-

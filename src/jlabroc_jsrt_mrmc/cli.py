@@ -6,7 +6,7 @@ import argparse
 from pathlib import Path
 import sys
 
-from .io import read_legacy_jlabroc_input, read_mrmc_matrix
+from .io import read_legacy_jlabroc_input, read_mrmc_input
 from .jlabroc import fit_jlabroc
 from .mrmc import analyze_mrmc
 
@@ -33,7 +33,12 @@ def _run_jlabroc(args: argparse.Namespace) -> int:
 
 def _run_mrmc(args: argparse.Namespace) -> int:
     path = Path(args.input)
-    ratings = read_mrmc_matrix(path, n_readers=args.readers)
+    ratings = read_mrmc_input(
+        path,
+        n_readers=args.readers,
+        n_negative=args.negative,
+        n_positive=args.positive,
+    )
     result = analyze_mrmc(
         ratings,
         n_readers=args.readers,
@@ -77,7 +82,10 @@ def build_parser() -> argparse.ArgumentParser:
     p_j.set_defaults(func=_run_jlabroc)
 
     p_m = sub.add_parser("mrmc", help="Run two-system JSRT-MRMC-compatible analysis")
-    p_m.add_argument("input", help="MRMC rating matrix text file")
+    p_m.add_argument(
+        "input",
+        help="MRMC numeric matrix or legacy JSRT-MRMC reader-block text file",
+    )
     p_m.add_argument("--readers", type=int, required=True, help="Number of readers")
     p_m.add_argument("--negative", type=int, required=True, help="Number of negative cases")
     p_m.add_argument("--positive", type=int, required=True, help="Number of positive cases")

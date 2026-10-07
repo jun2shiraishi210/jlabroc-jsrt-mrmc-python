@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "jlabroc-jsrt-mrmc"
-version = "1.0.0"
+version = "1.0.1"
 description = "Python implementation of JLABROC and JSRT-MRMC compatible ROC/MRMC analyses"
 readme = "README.md"
 authors = [{name = "Junji Shiraishi"}]

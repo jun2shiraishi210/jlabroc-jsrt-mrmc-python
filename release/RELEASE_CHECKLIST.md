@@ -1,3 +1,19 @@
+# Maintenance release checklist
+
+## v1.0.1
+
+- [x] Version metadata updated to 1.0.1.
+- [x] Original JSRT-MRMC reader-block input parser added without changing numerical algorithms.
+- [x] Legacy reader-block fixture verified to match the existing validated 100 x 10 matrix exactly.
+- [x] Ordinary local test suite passed.
+- [x] Archived-reference numerical validation passed.
+- [x] Systematic simulation validation passed.
+- [ ] Push the v1.0.1 maintenance commit to GitHub.
+- [ ] Confirm all GitHub Actions jobs are green.
+- [ ] Create tag/release `v1.0.1` after CI passes.
+
+---
+
 # Public release checklist
 
 Before creating the stable public tag:
