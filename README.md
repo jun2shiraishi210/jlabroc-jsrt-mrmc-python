@@ -28,6 +28,20 @@ python -m pip install pytest
 python -m pytest -q
 ```
 
+## Beginner guide and examples
+
+First-time users should start with [`QUICK_START.md`](QUICK_START.md). A Japanese version is available in [`QUICK_START_JA.md`](QUICK_START_JA.md).
+
+A more detailed beginner guide is available in [`docs/USER_GUIDE.md`](docs/USER_GUIDE.md). Beginner-facing copies of validated example datasets are under [`examples/`](examples/), together with expected CLI outputs.
+
+The examples include:
+
+- `TestSample1.txt`: JLABROC archived-reference example;
+- `TestSample2.txt`: 5-reader JSRT-MRMC example in numeric matrix format; and
+- `TestSample3.txt`: the same 5-reader MRMC example in the original legacy reader-block format.
+
+These are copies of validation/test files already included in v1.0.1; the original files remain unchanged.
+
 ## Command-line use
 
 Single-reader JLABROC-compatible analysis:
