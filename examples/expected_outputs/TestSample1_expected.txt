@@ -1,0 +1,8 @@
+JLABROC-compatible analysis (Python)
+Input file : examples/jlabroc/TestSample1.txt
+Negative N : 50
+Positive N : 50
+Fit points : 69
+a          : 1.517405
+b          : 0.852443
+AUC        : 0.875909
