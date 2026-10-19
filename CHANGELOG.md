@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.2
+
+- Standardized the Python project identifier and user-facing console command as `jlabroc_jsrt_mrmc`, matching the import/module name.
+- Updated README, English/Japanese Quick Start guides, and the beginner user guide to use the underscore-form command consistently.
+- Documented that the validated CI matrix covers Python 3.10-3.12.
+- Added Linux installation guidance for PEP 668 externally managed Python environments, recommending a virtual environment or `pipx`.
+- No changes to the JLABROC fitting algorithm, JSRT-MRMC ANOVA algorithm, numerical references, or systematic simulation design.
+
 ## 1.0.1
 
 - Added direct parsing of the original two-system JSRT-MRMC reader-block text format.
