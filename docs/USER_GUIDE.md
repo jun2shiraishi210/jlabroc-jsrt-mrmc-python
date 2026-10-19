@@ -1,6 +1,6 @@
 # JLABROC/JSRT-MRMC Python - Beginner User Guide
 
-This guide is for first-time users of JLABROC/JSRT-MRMC Python version 1.0.1. It explains how to install the package, run known examples, interpret the main outputs, and prepare your own input files.
+This guide is for first-time users of JLABROC/JSRT-MRMC Python version 1.0.2. It explains how to install the package, run known examples, interpret the main outputs, and prepare your own input files.
 
 > **Recommended first step:** Run `TestSample1`, `TestSample2`, and `TestSample3` before using your own data. Compare the displayed results with the files in `examples/expected_outputs/`.
 
@@ -8,24 +8,24 @@ This guide is for first-time users of JLABROC/JSRT-MRMC Python version 1.0.1. It
 
 - **JLABROC** performs single-reader binormal ROC fitting from actually negative and actually positive rating data.
 - **JSRT-MRMC** compares two systems in a multi-reader multi-case study. Reader-system AUCs are estimated with JLABROC, followed by the validated JSRT-MRMC jackknife/ANOVA procedure.
-- Version 1.0.1 accepts both the numeric matrix format and the original JSRT-MRMC reader-block format.
+- Version 1.0.2 accepts both the numeric matrix format and the original JSRT-MRMC reader-block format.
 
 ## 2. Requirements and installation
 
-Requirements: Python 3.10 or later, NumPy 1.24 or later, and SciPy 1.10 or later.
+Requirements: Python 3.10 or later (tested with Python 3.10-3.12), NumPy 1.24 or later, and SciPy 1.10 or later.
 
 ```bash
 python --version
 python -m pip install .
-python -m jlabroc_jsrt_mrmc --help
+jlabroc_jsrt_mrmc --help
 ```
 
-The help message should list the `jlabroc` and `mrmc` subcommands.
+The help message should list the `jlabroc` and `mrmc` subcommands. On Linux distributions that enforce PEP 668, use a virtual environment or `pipx install .` if installation into the system Python is blocked.
 
 ## 3. JLABROC example: TestSample1
 
 ```bash
-python -m jlabroc_jsrt_mrmc jlabroc examples/jlabroc/TestSample1.txt
+jlabroc_jsrt_mrmc jlabroc examples/jlabroc/TestSample1.txt
 ```
 
 Expected final values:
@@ -42,7 +42,7 @@ AUC        : 0.875909
 ## 4. JSRT-MRMC matrix example: TestSample2
 
 ```bash
-python -m jlabroc_jsrt_mrmc mrmc examples/mrmc/TestSample2.txt --readers 5 --negative 50 --positive 50
+jlabroc_jsrt_mrmc mrmc examples/mrmc/TestSample2.txt --readers 5 --negative 50 --positive 50
 ```
 
 Expected key values:
@@ -62,12 +62,12 @@ Rows are cases. Negative cases come first, followed by positive cases. For `R` r
 ## 5. JSRT-MRMC legacy example: TestSample3
 
 ```bash
-python -m jlabroc_jsrt_mrmc mrmc examples/mrmc/TestSample3.txt --readers 5 --negative 50 --positive 50
+jlabroc_jsrt_mrmc mrmc examples/mrmc/TestSample3.txt --readers 5 --negative 50 --positive 50
 ```
 
 `TestSample3.txt` contains the same 5-reader data as `TestSample2.txt`, but in the original JSRT-MRMC reader-block format. It should produce the same numerical MRMC results.
 
-The canonical two-system separator is `* *`; version 1.0.1 also accepts a single `*` separator for robustness with historical sample files.
+The canonical two-system separator is `* *`; version 1.0.2 also accepts a single `*` separator for robustness with historical sample files.
 
 ## 6. Using your own data
 
@@ -80,7 +80,7 @@ For JSRT-MRMC matrix input, use exactly `2R` columns for `R` readers, with negat
 | Problem | What to check |
 |---|---|
 | `python` is not recognized | Try `py` on Windows or `python3` on macOS/Linux. Confirm Python 3.10+ is installed. |
-| `No module named jlabroc_jsrt_mrmc` | Run `python -m pip install .` from the repository root. |
+| `No module named jlabroc_jsrt_mrmc` | Run `python -m pip install .` from the repository root. On Linux with a PEP 668 error, use a virtual environment or `pipx install .`. |
 | Input file not found | Check the current folder and path; quote paths containing spaces. |
 | MRMC row/column error | Confirm `--readers`, `--negative`, `--positive`, and that a matrix has `2R` columns. |
 | Legacy MRMC parse error | Confirm each `ReaderN` block has two numeric columns and the expected row counts. |
