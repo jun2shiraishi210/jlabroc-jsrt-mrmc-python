@@ -4,7 +4,7 @@
 
 ## 1. 必要な環境
 
-- Python 3.10以降
+- Python 3.10以降（Python 3.10-3.12で動作確認済み）
 - NumPy、SciPyが未導入の場合は、インストール時にインターネット接続が必要です。
 
 Pythonのバージョンを確認します。
@@ -25,7 +25,19 @@ python -m pip install .
 
 macOS/Linuxでは必要に応じて`python3 -m pip install .`を使用してください。
 
+**Linuxでの注意:** 一部のLinux distributionでは、system Pythonを保護するため、PEP 668により`pip install`が制限されることがあります。その場合はvirtual environmentを使用するか、command-line applicationとして次を使用してください。
+
+```bash
+pipx install .
+```
+
 ## 3. JLABROCの動作確認
+
+```bash
+jlabroc_jsrt_mrmc jlabroc examples/jlabroc/TestSample1.txt
+```
+
+同じ処理は次の形式でも実行できます。
 
 ```bash
 python -m jlabroc_jsrt_mrmc jlabroc examples/jlabroc/TestSample1.txt
@@ -47,7 +59,7 @@ AUC        : 0.875909
 ## 4. JSRT-MRMCの動作確認（matrix形式）
 
 ```bash
-python -m jlabroc_jsrt_mrmc mrmc examples/mrmc/TestSample2.txt --readers 5 --negative 50 --positive 50
+jlabroc_jsrt_mrmc mrmc examples/mrmc/TestSample2.txt --readers 5 --negative 50 --positive 50
 ```
 
 正常に動作すれば、次の値が含まれます。
@@ -67,7 +79,7 @@ p                 : 0.005440
 ## 5. 旧JSRT-MRMC形式も確認する場合
 
 ```bash
-python -m jlabroc_jsrt_mrmc mrmc examples/mrmc/TestSample3.txt --readers 5 --negative 50 --positive 50
+jlabroc_jsrt_mrmc mrmc examples/mrmc/TestSample3.txt --readers 5 --negative 50 --positive 50
 ```
 
 matrix形式と同じ数値結果が得られれば正常です。
@@ -76,7 +88,8 @@ matrix形式と同じ数値結果が得られれば正常です。
 
 - Pythonが3.10以降か確認してください。
 - `pyproject.toml`があるフォルダで`python -m pip install .`を再実行してください。
-- 短い実行コマンドが認識されない場合は、`python -m jlabroc_jsrt_mrmc ...`を使用してください。
+- console commandが認識されない場合は、`python -m jlabroc_jsrt_mrmc ...`を使用してください。
+- Linuxでexternally-managed-environmentエラーが表示された場合は、virtual environmentまたは`pipx install .`を使用してください。
 - 実行場所と入力ファイルのパスを確認してください。
 
 詳しくは[`docs/USER_GUIDE.md`](docs/USER_GUIDE.md)および[`docs/INPUT_FORMATS.md`](docs/INPUT_FORMATS.md)を参照してください。
