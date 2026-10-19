@@ -4,7 +4,7 @@ This page is for first-time users who want to confirm that JLABROC/JSRT-MRMC Pyt
 
 ## 1. Requirements
 
-- Python 3.10 or later
+- Python 3.10 or later (tested with Python 3.10-3.12)
 - Internet access during installation if NumPy or SciPy are not already installed
 
 Check Python:
@@ -25,7 +25,19 @@ python -m pip install .
 
 On macOS/Linux, use `python3 -m pip install .` if needed.
 
+**Linux note:** Some Linux distributions use an externally managed Python environment (PEP 668), which may block installation into the system Python. In that case, use a virtual environment, or install the command-line application with:
+
+```bash
+pipx install .
+```
+
 ## 3. JLABROC: run the included example
+
+```bash
+jlabroc_jsrt_mrmc jlabroc examples/jlabroc/TestSample1.txt
+```
+
+The same command can also be invoked as:
 
 ```bash
 python -m jlabroc_jsrt_mrmc jlabroc examples/jlabroc/TestSample1.txt
@@ -47,7 +59,7 @@ The complete expected output is in `examples/expected_outputs/TestSample1_expect
 ## 4. JSRT-MRMC: run the matrix-format example
 
 ```bash
-python -m jlabroc_jsrt_mrmc mrmc examples/mrmc/TestSample2.txt --readers 5 --negative 50 --positive 50
+jlabroc_jsrt_mrmc mrmc examples/mrmc/TestSample2.txt --readers 5 --negative 50 --positive 50
 ```
 
 A successful run should include:
@@ -67,7 +79,7 @@ The complete expected output is in `examples/expected_outputs/TestSample2_expect
 ## 5. Optional: test the original JSRT-MRMC reader-block format
 
 ```bash
-python -m jlabroc_jsrt_mrmc mrmc examples/mrmc/TestSample3.txt --readers 5 --negative 50 --positive 50
+jlabroc_jsrt_mrmc mrmc examples/mrmc/TestSample3.txt --readers 5 --negative 50 --positive 50
 ```
 
 This should produce the same numerical results as the matrix-format example.
@@ -76,7 +88,8 @@ This should produce the same numerical results as the matrix-format example.
 
 - Confirm that Python is version 3.10 or later.
 - Run `python -m pip install .` again from the folder containing `pyproject.toml`.
-- Use `python -m jlabroc_jsrt_mrmc ...` rather than the shorter console command if the executable is not found.
+- If the console command is not found, use `python -m jlabroc_jsrt_mrmc ...`.
+- On Linux, if pip reports an externally-managed-environment error, use a virtual environment or `pipx install .`.
 - Check that the file path is correct and that you are running the command from the repository root.
 
 For more detail, see [`docs/USER_GUIDE.md`](docs/USER_GUIDE.md) and [`docs/INPUT_FORMATS.md`](docs/INPUT_FORMATS.md).
