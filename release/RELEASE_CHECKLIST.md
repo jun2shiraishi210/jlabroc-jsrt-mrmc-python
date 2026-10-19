@@ -1,5 +1,18 @@
 # Maintenance release checklist
 
+## v1.0.2
+
+- [x] Version metadata updated to 1.0.2.
+- [x] Python project identifier and console command standardized as `jlabroc_jsrt_mrmc`.
+- [x] README, Quick Start guides, and beginner user guide updated for the underscore-form command.
+- [x] Python 3.10-3.12 tested range documented.
+- [x] Linux PEP 668 installation guidance added.
+- [x] Numerical algorithms, validation datasets, and numerical references unchanged.
+- [ ] Confirm all GitHub Actions jobs are green.
+- [ ] Create tag/release `v1.0.2` after CI passes.
+
+---
+
 ## v1.0.1
 
 - [x] Version metadata updated to 1.0.1.
