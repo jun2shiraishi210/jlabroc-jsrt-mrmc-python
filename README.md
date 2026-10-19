@@ -11,7 +11,7 @@ the JSRT-MRMC denominator-degrees-of-freedom integerization rule.
 
 ## Requirements
 
-- Python 3.10 or later
+- Python 3.10 or later (tested with Python 3.10-3.12)
 - NumPy
 - SciPy
 
@@ -20,6 +20,8 @@ Install from a local clone:
 ```bash
 python -m pip install -e .
 ```
+
+On Linux distributions that enforce PEP 668 (an externally managed Python environment), installation into the system Python may be blocked. In that case, use a virtual environment, or install the command-line application with `pipx install .`.
 
 For the test suite:
 
@@ -47,19 +49,19 @@ These are copies of validation/test files already included in v1.0.1; the origin
 Single-reader JLABROC-compatible analysis:
 
 ```bash
-jlabroc-jsrt-mrmc jlabroc tests/data/Test_R1A_In.txt
+jlabroc_jsrt_mrmc jlabroc tests/data/Test_R1A_In.txt
 ```
 
 Two-system JSRT-MRMC-compatible analysis using the numeric matrix format:
 
 ```bash
-jlabroc-jsrt-mrmc mrmc tests/data/RateData_Level2_R5_ver050_50_50_00001.txt --readers 5 --negative 50 --positive 50
+jlabroc_jsrt_mrmc mrmc tests/data/RateData_Level2_R5_ver050_50_50_00001.txt --readers 5 --negative 50 --positive 50
 ```
 
 The original JSRT-MRMC reader-block text format is also accepted directly:
 
 ```bash
-jlabroc-jsrt-mrmc mrmc tests/data/Test_In_forMRMC_R5_P50_N50_legacy.txt --readers 5 --negative 50 --positive 50
+jlabroc_jsrt_mrmc mrmc tests/data/Test_In_forMRMC_R5_P50_N50_legacy.txt --readers 5 --negative 50 --positive 50
 ```
 
 Both input layouts are converted to the same internal rating matrix before the
